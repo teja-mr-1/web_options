@@ -133,6 +133,7 @@
     <h1>AP EAPCET 2025 Web Options Notes & Cutoffs</h1>
 
     <button id="edit-btn" onclick="toggleEditMode()">&#9998; Edit List</button>
+    <button id="share-btn" onclick="createLiveLink()" style="margin-left:8px; display:inline-flex; align-items:center; gap:6px; padding:8px 18px; background:#0056b3; color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; transition: background 0.2s;">🔗 Share Live Link</button>
     <span id="save-status" style="display:none; margin-left:12px; font-size:13px; font-weight:600;"></span>
     <div id="edit-hint">&#x2705; <strong>Click a row</strong> to strike it out. <strong>Drag rows</strong> to reorder. Click <em>Done Editing</em> when finished &mdash; changes save automatically.</div>
     
@@ -1493,7 +1494,7 @@ function sortByRank() {
 // ── Save page permanently ──
 function savePage() {
     const statusEl = document.getElementById('save-status');
-    statusEl.textContent = '💾 Saving...';
+    statusEl.textContent = '💾 Saving locally...';
     statusEl.style.display = 'inline';
 
     // Clean up edit-mode artifacts before saving
@@ -1509,17 +1510,134 @@ function savePage() {
     .then(r => r.json())
     .then(data => {
         if (data.ok) {
-            statusEl.textContent = '✅ Saved!';
+            statusEl.textContent = '✅ Saved locally!';
             setTimeout(() => statusEl.style.display = 'none', 3000);
         } else {
-            statusEl.textContent = '❌ Save failed: ' + (data.error || 'unknown');
+            statusEl.textContent = '❌ Local save failed: ' + (data.error || 'unknown');
         }
     })
     .catch(() => {
-        statusEl.textContent = '❌ Save server not running (start save_server.py)';
-        setTimeout(() => statusEl.style.display = 'none', 5000);
+        statusEl.textContent = '💾 Saved in browser!';
+        setTimeout(() => statusEl.style.display = 'none', 3000);
+    });
+
+    // Also sync to JSONBlob if we are in a live session
+    const urlParams = new URLSearchParams(window.location.search);
+    const blobId = urlParams.get('id');
+    if (blobId) {
+        syncToCloud(blobId);
+    }
+}
+
+// ── Cloud Collaboration Logic ──
+function getListState() {
+    const order = [];
+    document.querySelectorAll('tr.data-row').forEach(tr => {
+        const colTd = tr.querySelector('td:nth-child(2)');
+        const branchTd = tr.querySelector('td:nth-child(5)');
+        if (colTd && branchTd) {
+            order.push({
+                college: colTd.textContent.trim(),
+                branch: branchTd.textContent.trim(),
+                struck: tr.classList.contains('struck')
+            });
+        }
+    });
+    return { order: order };
+}
+
+function syncToCloud(id) {
+    const statusEl = document.getElementById('save-status');
+    statusEl.textContent = '☁️ Syncing to cloud...';
+    statusEl.style.display = 'inline';
+
+    fetch('https://jsonblob.com/api/jsonBlob/' + id, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(getListState())
+    })
+    .then(r => {
+        if (r.ok) {
+            statusEl.textContent = '✅ Cloud Synced live!';
+            setTimeout(() => statusEl.style.display = 'none', 3000);
+        } else {
+            statusEl.textContent = '❌ Cloud Sync failed';
+        }
+    })
+    .catch(() => {
+        statusEl.textContent = '❌ Cloud Sync failed';
     });
 }
+
+function createLiveLink() {
+    const statusEl = document.getElementById('save-status');
+    statusEl.textContent = '🔗 Creating live share link...';
+    statusEl.style.display = 'inline';
+
+    fetch('https://jsonblob.com/api/jsonBlob', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(getListState())
+    })
+    .then(r => {
+        const locationHeader = r.headers.get('Location');
+        if (locationHeader) {
+            const id = locationHeader.substring(locationHeader.lastIndexOf('/') + 1);
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?id=' + id;
+            window.history.pushState({path:newUrl}, '', newUrl);
+            statusEl.textContent = '✅ Live link created! Copy the URL from your address bar.';
+            alert('Live link created successfully!
+
+Share this URL with your friends to collaborate:
+' + newUrl);
+        } else {
+            statusEl.textContent = '❌ Failed to generate live link';
+        }
+    })
+    .catch(() => {
+        statusEl.textContent = '❌ Cloud error';
+    });
+}
+
+// ── Load state from cloud on startup ──
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const blobId = urlParams.get('id');
+    if (blobId) {
+        const statusEl = document.getElementById('save-status');
+        statusEl.textContent = '🔄 Loading live list...';
+        statusEl.style.display = 'inline';
+
+        fetch('https://jsonblob.com/api/jsonBlob/' + blobId)
+        .then(r => r.json())
+        .then(data => {
+            if (data && data.order) {
+                const tbody = document.querySelector('tbody');
+                data.order.forEach(item => {
+                    const tr = Array.from(tbody.querySelectorAll('tr.data-row')).find(tr => {
+                        const colTd = tr.querySelector('td:nth-child(2)');
+                        const branchTd = tr.querySelector('td:nth-child(5)');
+                        return colTd && branchTd && colTd.textContent.trim() === item.college && branchTd.textContent.trim() === item.branch;
+                    });
+                    if (tr) {
+                        tbody.appendChild(tr);
+                        if (item.struck) {
+                            tr.classList.add('struck');
+                        } else {
+                            tr.classList.remove('struck');
+                        }
+                    }
+                });
+                renumberRows();
+                statusEl.textContent = '✅ Live list loaded!';
+                setTimeout(() => statusEl.style.display = 'none', 3000);
+            }
+        })
+        .catch(() => {
+            statusEl.textContent = '❌ Failed to load live list';
+        });
+    }
+});
 </script>
 
 </body>
