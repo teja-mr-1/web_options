@@ -135,6 +135,13 @@
     <button id="edit-btn" onclick="toggleEditMode()">&#9998; Edit List</button>
     <button id="share-btn" onclick="createLiveLink()" style="margin-left:8px; display:inline-flex; align-items:center; gap:6px; padding:8px 18px; background:#0056b3; color:#fff; border:none; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; transition: background 0.2s;">🔗 Share Live Link</button>
     <span id="save-status" style="display:none; margin-left:12px; font-size:13px; font-weight:600;"></span>
+    
+    <div id="share-container" style="display:none; margin: 15px 0; padding: 12px; background: #eef7f2; border: 1px solid #cce8d5; border-radius: 6px; align-items: center; gap: 10px; max-width: 650px;">
+        <span style="font-weight:bold; font-size:13px; color:#275b36; white-space:nowrap;">🔗 Live Share Link:</span>
+        <input type="text" id="share-url-input" readonly style="flex:1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; background: #fff; width: 60%;" onclick="this.select()">
+        <button id="copy-btn" onclick="copyShareUrl()" style="padding: 8px 15px; background: #275b36; color: #fff; border: none; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; transition: background 0.2s;">Copy Link</button>
+    </div>
+
     <div id="edit-hint">&#x2705; <strong>Click a row</strong> to strike it out. <strong>Drag rows</strong> to reorder. Click <em>Done Editing</em> when finished &mdash; changes save automatically.</div>
     
     <div class="meta">
@@ -1574,24 +1581,51 @@ function createLiveLink() {
             const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?id=' + id;
             window.history.pushState({path:newUrl}, '', newUrl);
             
-            // Try to copy to clipboard automatically
-            navigator.clipboard.writeText(newUrl)
-            .then(() => {
-                statusEl.textContent = '✅ Copied to clipboard!';
-                alert('Live link created and copied to clipboard successfully!\n\nShare it with your friends!');
-            })
-            .catch(() => {
-                statusEl.textContent = '✅ Link created!';
-                prompt('Live link created! Copy it from below:', newUrl);
-            });
+            // Show share link box
+            const shareContainer = document.getElementById('share-container');
+            const shareInput = document.getElementById('share-url-input');
+            if (shareContainer && shareInput) {
+                shareInput.value = newUrl;
+                shareContainer.style.display = 'flex';
+            }
             
-            setTimeout(() => statusEl.style.display = 'none', 5000);
+            statusEl.textContent = '✅ Live link created!';
+            setTimeout(() => statusEl.style.display = 'none', 3000);
         } else {
             statusEl.textContent = '❌ Failed to generate live link';
         }
     })
     .catch(() => {
         statusEl.textContent = '❌ Cloud error';
+    });
+}
+
+function copyShareUrl() {
+    const input = document.getElementById('share-url-input');
+    const copyBtn = document.getElementById('copy-btn');
+    input.select();
+    
+    // Copy using User-Gesture Clipboard API (works 100% of the time on button click)
+    navigator.clipboard.writeText(input.value)
+    .then(() => {
+        copyBtn.textContent = 'Copied!';
+        copyBtn.style.background = '#155724';
+        setTimeout(() => {
+            copyBtn.textContent = 'Copy Link';
+            copyBtn.style.background = '#275b36';
+        }, 2000);
+    })
+    .catch(() => {
+        // Fallback for older browsers
+        try {
+            document.execCommand('copy');
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = 'Copy Link';
+            }, 2000);
+        } catch(err) {
+            alert('Please highlight the link and copy it manually.');
+        }
     });
 }
 
@@ -1621,6 +1655,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (blobId) {
+        // Populate share box if loaded with a live session URL
+        const shareContainer = document.getElementById('share-container');
+        const shareInput = document.getElementById('share-url-input');
+        if (shareContainer && shareInput) {
+            shareInput.value = window.location.href;
+            shareContainer.style.display = 'flex';
+        }
         const statusEl = document.getElementById('save-status');
         statusEl.textContent = '🔄 Loading live list...';
         statusEl.style.display = 'inline';
