@@ -1573,8 +1573,19 @@ function createLiveLink() {
             const id = locationHeader.substring(locationHeader.lastIndexOf('/') + 1);
             const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?id=' + id;
             window.history.pushState({path:newUrl}, '', newUrl);
-            statusEl.textContent = '✅ Live link created! Copy the URL from your address bar.';
-            alert('Live link created successfully!\n\nShare this URL with your friends to collaborate:\n' + newUrl);
+            
+            // Try to copy to clipboard automatically
+            navigator.clipboard.writeText(newUrl)
+            .then(() => {
+                statusEl.textContent = '✅ Copied to clipboard!';
+                alert('Live link created and copied to clipboard successfully!\n\nShare it with your friends!');
+            })
+            .catch(() => {
+                statusEl.textContent = '✅ Link created!';
+                prompt('Live link created! Copy it from below:', newUrl);
+            });
+            
+            setTimeout(() => statusEl.style.display = 'none', 5000);
         } else {
             statusEl.textContent = '❌ Failed to generate live link';
         }
