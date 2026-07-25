@@ -1574,10 +1574,7 @@ function createLiveLink() {
             const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?id=' + id;
             window.history.pushState({path:newUrl}, '', newUrl);
             statusEl.textContent = '✅ Live link created! Copy the URL from your address bar.';
-            alert('Live link created successfully!
-
-Share this URL with your friends to collaborate:
-' + newUrl);
+            alert('Live link created successfully!\n\nShare this URL with your friends to collaborate:\n' + newUrl);
         } else {
             statusEl.textContent = '❌ Failed to generate live link';
         }
