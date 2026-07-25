@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP EAPCET 2025 — Options List & Cutoffs (Notes)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #ffffff;
+            color: #222222;
+            line-height: 1.5;
+        }
+        h1 {
+            color: #111111;
+            margin-bottom: 5px;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+        }
+        .meta {
+            color: #555555;
+            font-size: 14px;
+            margin-bottom: 25px;
+            background-color: #faf7f2;
+            border: 1px solid #ddd0be;
+            padding: 12px 16px;
+            border-radius: 6px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #cccccc;
+            padding: 8px 12px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f2ede4;
+            color: #333333;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        .au-row {
+            background-color: #e6f7ff !important;
+        }
+        .highlight-yellow {
+            background-color: #ffff99 !important;
+        }
+        .highlight-red {
+            background-color: #ffcccc !important;
+        }
+        .cutoff {
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 14px;
+            color: #b32d2d;
+        }
+        /* Edit mode styles */
+        #edit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            padding: 8px 18px;
+            background: #3b7a57;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #edit-btn:hover { background: #2d5f43; }
+        #edit-btn.active { background: #b32d2d; }
+        #edit-hint {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+            display: none;
+        }
+        body.edit-mode tr.data-row {
+            cursor: grab;
+        }
+        body.edit-mode tr.data-row:active {
+            cursor: grabbing;
+        }
+        tr.struck td {
+            text-decoration: line-through !important;
+            opacity: 0.45;
+        }
+        tr.dragging {
+            opacity: 0.4;
+            background: #d0eaff !important;
+        }
+        tr.drag-over {
+            border-top: 3px solid #3b7a57 !important;
+        }
+        #rank-header:hover {
+            background-color: #e0d8cc;
+        }
+        #rank-header #sort-arrow {
+            font-size: 10px;
+            margin-left: 4px;
+            color: #666;
+        }
+        @media print {
+            body {
+                margin: 20px;
+            }
+            .meta {
+                background: none !important;
+                border: 1px solid #ccc !important;
+            }
+            #edit-btn, #edit-hint { display: none !important; }
+            tr.struck { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AP EAPCET 2025 Web Options Notes & Cutoffs</h1>
+
+    <button id="edit-btn" onclick="toggleEditMode()">&#9998; Edit List</button>
+    <span id="save-status" style="display:none; margin-left:12px; font-size:13px; font-weight:600;"></span>
+    <div id="edit-hint">&#x2705; <strong>Click a row</strong> to strike it out. <strong>Drag rows</strong> to reorder. Click <em>Done Editing</em> when finished &mdash; changes save automatically.</div>
+    
+    <div class="meta">
+        <strong>Filters Applied:</strong> Software Related Branches &bull; Category: BC_D &bull; Gender: General/Male &bull; Region: AU &bull; Phase: 1
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 50px; text-align: center;">S.No</th>
+                <th style="width: 80px;">College Code</th>
+                <th>College Name</th>
+                <th>Branch Name</th>
+                <th style="width: 80px;">Branch Code</th>
+                <th style="width: 150px;">Place / Dist</th>
+                <th style="width: 90px;">Fee</th>
+                <th style="width: 70px; text-align: center;">Seats</th>
+                <th style="width: 180px; text-align: right; cursor: pointer; user-select: none;" id="rank-header" onclick="sortByRank()">BC_D Gen AU Closing Rank <span id="sort-arrow">&#9660;</span></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr class='au-row'>
+                <td style="text-align: center;">1</td>
+                <td style="font-weight: bold; color: #c47144;">AUCE</td>
+                <td>
+                    <div style="font-weight: bold;">A U COLLEGE OF ENGG. VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: UNIV
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹44,500</td>
+                <td style="text-align: center;">55</td>
+                <td class="cutoff" style="text-align: right;">2,231</td>
+            </tr>
+        
+
+            <tr class='au-row'>
+                <td style="text-align: center;">2</td>
+                <td style="font-weight: bold; color: #c47144;">AUCESF</td>
+                <td>
+                    <div style="font-weight: bold;">A U COLLEGE OF ENGG-SELF FINANCE VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: SF
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Information Technology</td>
+                <td style="font-weight: bold; color: #3b7a57;">INF</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹62,000</td>
+                <td style="text-align: center;">55</td>
+                <td class="cutoff" style="text-align: right;">7,193</td>
+            </tr>
+        
+
+            <tr class='au-row'>
+                <td style="text-align: center;">3</td>
+                <td style="font-weight: bold; color: #c47144;">AUCE</td>
+                <td>
+                    <div style="font-weight: bold;">A U COLLEGE OF ENGG. VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: UNIV
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹44,500</td>
+                <td style="text-align: center;">55</td>
+                <td class="cutoff" style="text-align: right;">—</td>
+            </tr>
+        
+
+            <tr class='au-row'>
+                <td style="text-align: center;">4</td>
+                <td style="font-weight: bold; color: #c47144;">JNTK</td>
+                <td>
+                    <div style="font-weight: bold;">JNTUK COLLEGE OF ENGG. KAKINADA</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: UNIV
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">KAKINADA</div>
+                    <div style="font-size: 0.78em; color: #666;">EG District</div>
+                </td>
+                <td>₹10,000</td>
+                <td style="text-align: center;">55</td>
+                <td class="cutoff" style="text-align: right;">1,116</td>
+            </tr>
+        
+
+            <tr class='au-row'>
+                <td style="text-align: center;">5</td>
+                <td style="font-weight: bold; color: #c47144;">JNTK</td>
+                <td>
+                    <div style="font-weight: bold;">JNTUK COLLEGE OF ENGG. KAKINADA</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: UNIV
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">KAKINADA</div>
+                    <div style="font-size: 0.78em; color: #666;">EG District</div>
+                </td>
+                <td>₹10,000</td>
+                <td style="text-align: center;">55</td>
+                <td class="cutoff" style="text-align: right;">1,748</td>
+            </tr>
+        
+
+            <tr class='au-row'>
+                <td style="text-align: center;">6</td>
+                <td style="font-weight: bold; color: #c47144;">JNTKSS</td>
+                <td>
+                    <div style="font-weight: bold;">JNTUK COLLEGE OF ENGG. KAKINADA-SELF SUPPORTING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: SS
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">KAKINADA</div>
+                    <div style="font-size: 0.78em; color: #666;">EG District</div>
+                </td>
+                <td>₹75,000</td>
+                <td style="text-align: center;">55</td>
+                <td class="cutoff" style="text-align: right;">3,763</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">7</td>
+                <td style="font-weight: bold; color: #c47144;">GVPE</td>
+                <td>
+                    <div style="font-weight: bold;">GAYATHRI VIDYA PARISHAD COLL. OF ENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">2,406</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">8</td>
+                <td style="font-weight: bold; color: #c47144;">GVPE</td>
+                <td>
+                    <div style="font-weight: bold;">GAYATHRI VIDYA PARISHAD COLL. OF ENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">48</td>
+                <td class="cutoff" style="text-align: right;">3,177</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">9</td>
+                <td style="font-weight: bold; color: #c47144;">GVPE</td>
+                <td>
+                    <div style="font-weight: bold;">GAYATHRI VIDYA PARISHAD COLL. OF ENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">48</td>
+                <td class="cutoff" style="text-align: right;">3,769</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">10</td>
+                <td style="font-weight: bold; color: #c47144;">GVPE</td>
+                <td>
+                    <div style="font-weight: bold;">GAYATHRI VIDYA PARISHAD COLL. OFENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">4,461</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">11</td>
+                <td style="font-weight: bold; color: #c47144;">GVPE</td>
+                <td>
+                    <div style="font-weight: bold;">GAYATHRI VIDYA PARISHAD COLL. OF ENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Information Technology</td>
+                <td style="font-weight: bold; color: #3b7a57;">INF</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">48</td>
+                <td class="cutoff" style="text-align: right;">5,508</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">12</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPU</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">500</td>
+                <td class="cutoff" style="text-align: right;">2,958</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">13</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPU</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">315</td>
+                <td class="cutoff" style="text-align: right;">4,193</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">14</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPU</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Analytics)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CDA</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">63</td>
+                <td class="cutoff" style="text-align: right;">4,498</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">15</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPU</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Block Chain)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CBC</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">21</td>
+                <td class="cutoff" style="text-align: right;">4,665</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">16</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPU</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Cyber Security)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSC</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">42</td>
+                <td class="cutoff" style="text-align: right;">—</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">17</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPU</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">42</td>
+                <td class="cutoff" style="text-align: right;">—</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">18</td>
+                <td style="font-weight: bold; color: #c47144;">SRMUPU</td>
+                <td>
+                    <div style="font-weight: bold;">S R M UNIVERSITY AP</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: SRMUPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹102,000</td>
+                <td style="text-align: center;">38</td>
+                <td class="cutoff" style="text-align: right;">4,369</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">19</td>
+                <td style="font-weight: bold; color: #c47144;">SRMUPU</td>
+                <td>
+                    <div style="font-weight: bold;">S R M UNIVERSITY AP</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: SRMUPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹102,000</td>
+                <td style="text-align: center;">441</td>
+                <td class="cutoff" style="text-align: right;">4,381</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">20</td>
+                <td style="font-weight: bold; color: #c47144;">JNTV</td>
+                <td>
+                    <div style="font-weight: bold;">JNTUK COLLEGE OF ENGINEERING VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: UNIV
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VZM District</div>
+                </td>
+                <td>₹10,000</td>
+                <td style="text-align: center;">66</td>
+                <td class="cutoff" style="text-align: right;">5,276</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">21</td>
+                <td style="font-weight: bold; color: #c47144;">JNTV</td>
+                <td>
+                    <div style="font-weight: bold;">JNTUK COLLEGE OF ENGINEERING VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: UNIV
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VZM District</div>
+                </td>
+                <td>₹10,000</td>
+                <td style="text-align: center;">66</td>
+                <td class="cutoff" style="text-align: right;">7,568</td>
+            </tr>
+        
+
+            <tr class='highlight-red'>
+                <td style="text-align: center;">22</td>
+                <td style="font-weight: bold; color: #c47144;">JNTV</td>
+                <td>
+                    <div style="font-weight: bold;">JNTUK COLLEGE OF ENGINEERING VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: UNIV
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Information Technology</td>
+                <td style="font-weight: bold; color: #3b7a57;">INF</td>
+                <td>
+                    <div style="font-weight: 500;">VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VZM District</div>
+                </td>
+                <td>₹10,000</td>
+                <td style="text-align: center;">66</td>
+                <td class="cutoff" style="text-align: right;">16,528</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">23</td>
+                <td style="font-weight: bold; color: #c47144;">ANIL</td>
+                <td>
+                    <div style="font-weight: bold;">ANIL NEERUKONDA INSTITUTE OF TECHNOLOGY AND SCI</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">BHEEMUNIPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹84,100</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">6,815</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">24</td>
+                <td style="font-weight: bold; color: #c47144;">ANIL</td>
+                <td>
+                    <div style="font-weight: bold;">ANIL NEERUKONDA INSTITUTE OF TECHNOLOGY AND SCI</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">BHEEMUNIPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹84,100</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">8,986</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">25</td>
+                <td style="font-weight: bold; color: #c47144;">ANIL</td>
+                <td>
+                    <div style="font-weight: bold;">ANIL NEERUKONDA INSTITUTE OF TECHNOLOGY AND SCI</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">BHEEMUNIPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹84,100</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">10,684</td>
+            </tr>
+        
+
+            <tr class='highlight-yellow'>
+                <td style="text-align: center;">26</td>
+                <td style="font-weight: bold; color: #c47144;">ANIL</td>
+                <td>
+                    <div style="font-weight: bold;">ANIL NEERUKONDA INSTITUTE OF TECHNOLOGY AND SCI</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">BHEEMUNIPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹84,100</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">11,588</td>
+            </tr>
+        
+
+            <tr class='highlight-red'>
+                <td style="text-align: center;">27</td>
+                <td style="font-weight: bold; color: #c47144;">ANIL</td>
+                <td>
+                    <div style="font-weight: bold;">ANIL NEERUKONDA INSTITUTE OF TECHNOLOGY AND SCI</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: AU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Information Technology</td>
+                <td style="font-weight: bold; color: #3b7a57;">INF</td>
+                <td>
+                    <div style="font-weight: 500;">BHEEMUNIPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹84,100</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">17,717</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">28</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPUMT</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY-5 YEAR INTEGRATED MTECH</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">130</td>
+                <td class="cutoff" style="text-align: right;">7,047</td>
+            </tr>
+        
+
+            <tr class='highlight-yellow'>
+                <td style="text-align: center;">29</td>
+                <td style="font-weight: bold; color: #c47144;">VITAPUMT</td>
+                <td>
+                    <div style="font-weight: bold;">VIT-AP UNIVERSITY-5 YEAR INTEGRATED MTECH</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VITAPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Software Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">SWE</td>
+                <td>
+                    <div style="font-weight: 500;">AMARAVATHI</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">129</td>
+                <td class="cutoff" style="text-align: right;">12,895</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">30</td>
+                <td style="font-weight: bold; color: #c47144;">VITB</td>
+                <td>
+                    <div style="font-weight: bold;">VISHNU GRP OF INSTNS - VISHNU INST OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">5,961</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">31</td>
+                <td style="font-weight: bold; color: #c47144;">VITB</td>
+                <td>
+                    <div style="font-weight: bold;">VISHNU GRP OF INSTNS - VISHNU INST OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">96</td>
+                <td class="cutoff" style="text-align: right;">6,623</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">32</td>
+                <td style="font-weight: bold; color: #c47144;">VITB</td>
+                <td>
+                    <div style="font-weight: bold;">VISHNU GRP OF INSTNS - VISHNU INST OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (AI & ML Specialization)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CAD</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">96</td>
+                <td class="cutoff" style="text-align: right;">8,925</td>
+            </tr>
+        
+
+            <tr class='highlight-yellow'>
+                <td style="text-align: center;">33</td>
+                <td style="font-weight: bold; color: #c47144;">VITB</td>
+                <td>
+                    <div style="font-weight: bold;">VISHNU GRP OF INSTNS - VISHNU INST OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Electronics and Communication Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">ECE</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">10,762</td>
+            </tr>
+        
+
+            <tr class='highlight-red'>
+                <td style="text-align: center;">34</td>
+                <td style="font-weight: bold; color: #c47144;">VITB</td>
+                <td>
+                    <div style="font-weight: bold;">VISHNU GRP OF INSTNS - VISHNU INST OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Information Technology</td>
+                <td style="font-weight: bold; color: #3b7a57;">INF</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹103,000</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">20,065</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">35</td>
+                <td style="font-weight: bold; color: #c47144;">SRKR</td>
+                <td>
+                    <div style="font-weight: bold;">S R K R ENGINEERING COLLEGE</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">288</td>
+                <td class="cutoff" style="text-align: right;">7,485</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">36</td>
+                <td style="font-weight: bold; color: #c47144;">SRKR</td>
+                <td>
+                    <div style="font-weight: bold;">S R K R ENGINEERING COLLEGE</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Artificial Intelligence and Machine Learning</td>
+                <td style="font-weight: bold; color: #3b7a57;">AIM</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">11,082</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">37</td>
+                <td style="font-weight: bold; color: #c47144;">SRKR</td>
+                <td>
+                    <div style="font-weight: bold;">S R K R ENGINEERING COLLEGE</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Artificial Intelligence and Data Science</td>
+                <td style="font-weight: bold; color: #3b7a57;">AID</td>
+                <td>
+                    <div style="font-weight: 500;">BHIMAVARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">WG District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">13,121</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">38</td>
+                <td style="font-weight: bold; color: #c47144;">RVJC</td>
+                <td>
+                    <div style="font-weight: bold;">R V R AND J C COLLEGE OF ENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: ANU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">GUNTUR</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">288</td>
+                <td class="cutoff" style="text-align: right;">9,261</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">39</td>
+                <td style="font-weight: bold; color: #c47144;">RVJC</td>
+                <td>
+                    <div style="font-weight: bold;">R V R AND J C COLLEGE OF ENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: ANU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">GUNTUR</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">10,650</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">40</td>
+                <td style="font-weight: bold; color: #c47144;">RVJC</td>
+                <td>
+                    <div style="font-weight: bold;">R V R AND J C COLLEGE OFENGINEERING</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: ANU &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">GUNTUR</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">14,831</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">41</td>
+                <td style="font-weight: bold; color: #c47144;">MVRG</td>
+                <td>
+                    <div style="font-weight: bold;">M V G R COLLEGE OF ENGINEERNG</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VZM District</div>
+                </td>
+                <td>₹76,900</td>
+                <td style="text-align: center;">240</td>
+                <td class="cutoff" style="text-align: right;">12,100</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">42</td>
+                <td style="font-weight: bold; color: #c47144;">MVRG</td>
+                <td>
+                    <div style="font-weight: bold;">M V G R COLLEGE OF ENGINEERNG</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VZM District</div>
+                </td>
+                <td>₹76,900</td>
+                <td style="text-align: center;">96</td>
+                <td class="cutoff" style="text-align: right;">14,238</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">43</td>
+                <td style="font-weight: bold; color: #c47144;">MVRG</td>
+                <td>
+                    <div style="font-weight: bold;">M V G R COLLEGE OF ENGINEERNG</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">VIZIANAGARAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VZM District</div>
+                </td>
+                <td>₹76,900</td>
+                <td style="text-align: center;">48</td>
+                <td class="cutoff" style="text-align: right;">16,158</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">44</td>
+                <td style="font-weight: bold; color: #c47144;">GMRI</td>
+                <td>
+                    <div style="font-weight: bold;">G M R INSTITUTE OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Computer Science and Engineering</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSE</td>
+                <td>
+                    <div style="font-weight: 500;">RAJAM</div>
+                    <div style="font-size: 0.78em; color: #666;">SKL District</div>
+                </td>
+                <td>₹77,800</td>
+                <td style="text-align: center;">192</td>
+                <td class="cutoff" style="text-align: right;">8,722</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">45</td>
+                <td style="font-weight: bold; color: #c47144;">GMRI</td>
+                <td>
+                    <div style="font-weight: bold;">G M R INSTITUTE OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">RAJAM</div>
+                    <div style="font-size: 0.78em; color: #666;">SKL District</div>
+                </td>
+                <td>₹77,800</td>
+                <td style="text-align: center;">96</td>
+                <td class="cutoff" style="text-align: right;">10,915</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">46</td>
+                <td style="font-weight: bold; color: #c47144;">GMRI</td>
+                <td>
+                    <div style="font-weight: bold;">G M R INSTITUTE OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (AI & ML Specialization)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CAD</td>
+                <td>
+                    <div style="font-weight: 500;">RAJAM</div>
+                    <div style="font-size: 0.78em; color: #666;">SKL District</div>
+                </td>
+                <td>₹77,800</td>
+                <td style="text-align: center;">48</td>
+                <td class="cutoff" style="text-align: right;">13,580</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">47</td>
+                <td style="font-weight: bold; color: #c47144;">ADTPPU</td>
+                <td>
+                    <div style="font-weight: bold;">ADITYA  UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: ADTPPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Artificial Intelligence and Machine Learning</td>
+                <td style="font-weight: bold; color: #3b7a57;">AIM</td>
+                <td>
+                    <div style="font-weight: 500;">SURAMPALEM</div>
+                    <div style="font-size: 0.78em; color: #666;">EG District</div>
+                </td>
+                <td>₹60,000</td>
+                <td style="text-align: center;">273</td>
+                <td class="cutoff" style="text-align: right;">22,118</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">48</td>
+                <td style="font-weight: bold; color: #c47144;">ADTPPU</td>
+                <td>
+                    <div style="font-weight: bold;">ADITYA  UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: ADTPPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">SURAMPALEM</div>
+                    <div style="font-size: 0.78em; color: #666;">EG District</div>
+                </td>
+                <td>₹60,000</td>
+                <td style="text-align: center;">147</td>
+                <td class="cutoff" style="text-align: right;">22,362</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">49</td>
+                <td style="font-weight: bold; color: #c47144;">VVITPU</td>
+                <td>
+                    <div style="font-weight: bold;">V V I T - UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VVITPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CAI</td>
+                <td>
+                    <div style="font-weight: 500;">GUNTUR</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹65,200</td>
+                <td style="text-align: center;">120</td>
+                <td class="cutoff" style="text-align: right;">13,956</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">50</td>
+                <td style="font-weight: bold; color: #c47144;">VVITPU</td>
+                <td>
+                    <div style="font-weight: bold;">V V I T - UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VVITPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (AI and Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CAD</td>
+                <td>
+                    <div style="font-weight: 500;">GUNTUR</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹65,200</td>
+                <td style="text-align: center;">120</td>
+                <td class="cutoff" style="text-align: right;">18,422</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">51</td>
+                <td style="font-weight: bold; color: #c47144;">VVITPU</td>
+                <td>
+                    <div style="font-weight: bold;">V V I T - UNIVERSITY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: VVITPU &bull; Type: Private University
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (AI and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">GUNTUR</div>
+                    <div style="font-size: 0.78em; color: #666;">GTR District</div>
+                </td>
+                <td>₹65,200</td>
+                <td style="text-align: center;">180</td>
+                <td class="cutoff" style="text-align: right;">23,515</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">52</td>
+                <td style="font-weight: bold; color: #c47144;">PPSV</td>
+                <td>
+                    <div style="font-weight: bold;">PRASAD V POTLURI SIDDHARTHA INSTT OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">VIJAYAWADA</div>
+                    <div style="font-size: 0.78em; color: #666;">KRI District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">48</td>
+                <td class="cutoff" style="text-align: right;">14,558</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">53</td>
+                <td style="font-weight: bold; color: #c47144;">PPSV</td>
+                <td>
+                    <div style="font-weight: bold;">PRASAD V POTLURI SIDDHARTHA INSTT OF TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUK &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">VIJAYAWADA</div>
+                    <div style="font-size: 0.78em; color: #666;">KRI District</div>
+                </td>
+                <td>₹105,000</td>
+                <td style="text-align: center;">48</td>
+                <td class="cutoff" style="text-align: right;">17,020</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">54</td>
+                <td style="font-weight: bold; color: #c47144;">RAGU</td>
+                <td>
+                    <div style="font-weight: bold;">RAGHU ENGINEERING COLLEGE</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence and Machine Learning)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSM</td>
+                <td>
+                    <div style="font-weight: 500;">BHEEMUNIPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹80,800</td>
+                <td style="text-align: center;">288</td>
+                <td class="cutoff" style="text-align: right;">38,113</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">55</td>
+                <td style="font-weight: bold; color: #c47144;">RAGU</td>
+                <td>
+                    <div style="font-weight: bold;">RAGHU ENGINEERING COLLEGE</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">BHEEMUNIPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹80,800</td>
+                <td style="text-align: center;">288</td>
+                <td class="cutoff" style="text-align: right;">44,014</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">56</td>
+                <td style="font-weight: bold; color: #c47144;">VIVP</td>
+                <td>
+                    <div style="font-weight: bold;">VIGNANS INSTITUTE OF INFORMATION TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Data Science)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CSD</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹68,700</td>
+                <td style="text-align: center;">96</td>
+                <td class="cutoff" style="text-align: right;">21,318</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">57</td>
+                <td style="font-weight: bold; color: #c47144;">VIVP</td>
+                <td>
+                    <div style="font-weight: bold;">VIGNANS INSTITUTE OF INFORMATION TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">CSE (Artificial Intelligence)</td>
+                <td style="font-weight: bold; color: #3b7a57;">CAI</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹68,700</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">23,013</td>
+            </tr>
+        
+
+            <tr>
+                <td style="text-align: center;">58</td>
+                <td style="font-weight: bold; color: #c47144;">VIVP</td>
+                <td>
+                    <div style="font-weight: bold;">VIGNANS INSTITUTE OF INFORMATION TECHNOLOGY</div>
+                    <div style="font-size: 0.78em; color: #666; margin-top: 2px;">
+                        University: JNTUV &bull; Type: PVT
+                    </div>
+                </td>
+                <td style="font-weight: bold;">Artificial Intelligence and Data Science</td>
+                <td style="font-weight: bold; color: #3b7a57;">AID</td>
+                <td>
+                    <div style="font-weight: 500;">VISAKHAPATNAM</div>
+                    <div style="font-size: 0.78em; color: #666;">VSP District</div>
+                </td>
+                <td>₹68,700</td>
+                <td style="text-align: center;">144</td>
+                <td class="cutoff" style="text-align: right;">23,633</td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+<script>
+// Mark all data rows
+document.querySelectorAll('tbody tr').forEach(tr => tr.classList.add('data-row'));
+
+let editMode = false;
+let dragSrc = null;
+
+function toggleEditMode() {
+    editMode = !editMode;
+    document.body.classList.toggle('edit-mode', editMode);
+    const btn = document.getElementById('edit-btn');
+    const hint = document.getElementById('edit-hint');
+    btn.textContent = editMode ? '✓ Done Editing' : '✎ Edit List';
+    btn.classList.toggle('active', editMode);
+    hint.style.display = editMode ? 'block' : 'none';
+
+    document.querySelectorAll('tr.data-row').forEach(tr => {
+        if (editMode) {
+            tr.setAttribute('draggable', 'true');
+            tr.addEventListener('click', onRowClick);
+            tr.addEventListener('dragstart', onDragStart);
+            tr.addEventListener('dragover', onDragOver);
+            tr.addEventListener('dragleave', onDragLeave);
+            tr.addEventListener('drop', onDrop);
+            tr.addEventListener('dragend', onDragEnd);
+        } else {
+            tr.removeAttribute('draggable');
+            tr.removeEventListener('click', onRowClick);
+            tr.removeEventListener('dragstart', onDragStart);
+            tr.removeEventListener('dragover', onDragOver);
+            tr.removeEventListener('dragleave', onDragLeave);
+            tr.removeEventListener('drop', onDrop);
+            tr.removeEventListener('dragend', onDragEnd);
+            tr.classList.remove('drag-over');
+        }
+    });
+    if (!editMode) {
+        renumberRows();
+        savePage();
+    }
+}
+
+function onRowClick(e) {
+    if (!editMode) return;
+    this.classList.toggle('struck');
+}
+
+function onDragStart(e) {
+    dragSrc = this;
+    this.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+}
+
+function onDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (this !== dragSrc) this.classList.add('drag-over');
+    return false;
+}
+
+function onDragLeave() {
+    this.classList.remove('drag-over');
+}
+
+function onDrop(e) {
+    e.stopPropagation();
+    if (this !== dragSrc) {
+        const tbody = this.parentNode;
+        const rows = Array.from(tbody.querySelectorAll('tr.data-row'));
+        const srcIdx = rows.indexOf(dragSrc);
+        const tgtIdx = rows.indexOf(this);
+        if (srcIdx < tgtIdx) {
+            tbody.insertBefore(dragSrc, this.nextSibling);
+        } else {
+            tbody.insertBefore(dragSrc, this);
+        }
+    }
+    this.classList.remove('drag-over');
+    return false;
+}
+
+function onDragEnd() {
+    document.querySelectorAll('tr.drag-over').forEach(r => r.classList.remove('drag-over'));
+    this.classList.remove('dragging');
+}
+
+function renumberRows() {
+    let n = 1;
+    document.querySelectorAll('tr.data-row').forEach(tr => {
+        const firstTd = tr.querySelector('td');
+        if (firstTd) firstTd.textContent = n++;
+    });
+}
+
+// ── Rank column sort ──
+let rankSortAsc = true;
+function sortByRank() {
+    const tbody = document.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr.data-row'));
+    rows.sort((a, b) => {
+        const getRank = tr => {
+            const td = tr.querySelector('td.cutoff');
+            if (!td) return 999999;
+            const txt = td.textContent.trim().replace(/,/g, '');
+            return txt === '—' || txt === '' ? 999999 : parseInt(txt) || 999999;
+        };
+        return rankSortAsc ? getRank(a) - getRank(b) : getRank(b) - getRank(a);
+    });
+    rows.forEach(r => tbody.appendChild(r));
+    rankSortAsc = !rankSortAsc;
+    document.getElementById('sort-arrow').innerHTML = rankSortAsc ? '&#9660;' : '&#9650;';
+    renumberRows();
+}
+
+// ── Save page permanently ──
+function savePage() {
+    const statusEl = document.getElementById('save-status');
+    statusEl.textContent = '💾 Saving...';
+    statusEl.style.display = 'inline';
+
+    // Clean up edit-mode artifacts before saving
+    document.querySelectorAll('tr[draggable]').forEach(tr => tr.removeAttribute('draggable'));
+
+    const html = document.documentElement.outerHTML;
+    fetch('http://localhost:8283/save', {
+        method: 'POST',
+        headers: {'Content-Type': 'text/html; charset=utf-8'},
+        body: '<!DOCTYPE html>
+' + html
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.ok) {
+            statusEl.textContent = '✅ Saved!';
+            setTimeout(() => statusEl.style.display = 'none', 3000);
+        } else {
+            statusEl.textContent = '❌ Save failed: ' + (data.error || 'unknown');
+        }
+    })
+    .catch(() => {
+        statusEl.textContent = '❌ Save server not running (start save_server.py)';
+        setTimeout(() => statusEl.style.display = 'none', 5000);
+    });
+}
+</script>
+
+</body>
+</html>
