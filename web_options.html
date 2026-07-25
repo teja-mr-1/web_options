@@ -1491,35 +1491,23 @@ function sortByRank() {
     renumberRows();
 }
 
-// ── Save page permanently ──
+// ── Save page ──
 function savePage() {
     const statusEl = document.getElementById('save-status');
-    statusEl.textContent = '💾 Saving locally...';
+    statusEl.textContent = '💾 Saving...';
     statusEl.style.display = 'inline';
 
     // Clean up edit-mode artifacts before saving
     document.querySelectorAll('tr[draggable]').forEach(tr => tr.removeAttribute('draggable'));
 
-    const html = document.documentElement.outerHTML;
-    fetch('http://localhost:8283/save', {
-        method: 'POST',
-        headers: {'Content-Type': 'text/html; charset=utf-8'},
-        body: '<!DOCTYPE html>
-' + html
-    })
-    .then(r => r.json())
-    .then(data => {
-        if (data.ok) {
-            statusEl.textContent = '✅ Saved locally!';
-            setTimeout(() => statusEl.style.display = 'none', 3000);
-        } else {
-            statusEl.textContent = '❌ Local save failed: ' + (data.error || 'unknown');
-        }
-    })
-    .catch(() => {
-        statusEl.textContent = '💾 Saved in browser!';
+    // Save list order to localStorage for offline persistence
+    try {
+        localStorage.setItem('web_options_local_state', JSON.stringify(getListState()));
+        statusEl.textContent = '✅ Saved in browser!';
         setTimeout(() => statusEl.style.display = 'none', 3000);
-    });
+    } catch(e) {
+        statusEl.textContent = '❌ Browser save failed';
+    }
 
     // Also sync to JSONBlob if we are in a live session
     const urlParams = new URLSearchParams(window.location.search);
@@ -1599,10 +1587,31 @@ Share this URL with your friends to collaborate:
     });
 }
 
-// ── Load state from cloud on startup ──
+// ── Load state from cloud or localStorage on startup ──
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const blobId = urlParams.get('id');
+    
+    const applyOrder = (order) => {
+        const tbody = document.querySelector('tbody');
+        order.forEach(item => {
+            const tr = Array.from(tbody.querySelectorAll('tr.data-row')).find(tr => {
+                const colTd = tr.querySelector('td:nth-child(2)');
+                const branchTd = tr.querySelector('td:nth-child(5)');
+                return colTd && branchTd && colTd.textContent.trim() === item.college && branchTd.textContent.trim() === item.branch;
+            });
+            if (tr) {
+                tbody.appendChild(tr);
+                if (item.struck) {
+                    tr.classList.add('struck');
+                } else {
+                    tr.classList.remove('struck');
+                }
+            }
+        });
+        renumberRows();
+    };
+
     if (blobId) {
         const statusEl = document.getElementById('save-status');
         statusEl.textContent = '🔄 Loading live list...';
@@ -1612,23 +1621,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(r => r.json())
         .then(data => {
             if (data && data.order) {
-                const tbody = document.querySelector('tbody');
-                data.order.forEach(item => {
-                    const tr = Array.from(tbody.querySelectorAll('tr.data-row')).find(tr => {
-                        const colTd = tr.querySelector('td:nth-child(2)');
-                        const branchTd = tr.querySelector('td:nth-child(5)');
-                        return colTd && branchTd && colTd.textContent.trim() === item.college && branchTd.textContent.trim() === item.branch;
-                    });
-                    if (tr) {
-                        tbody.appendChild(tr);
-                        if (item.struck) {
-                            tr.classList.add('struck');
-                        } else {
-                            tr.classList.remove('struck');
-                        }
-                    }
-                });
-                renumberRows();
+                applyOrder(data.order);
                 statusEl.textContent = '✅ Live list loaded!';
                 setTimeout(() => statusEl.style.display = 'none', 3000);
             }
@@ -1636,6 +1629,17 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(() => {
             statusEl.textContent = '❌ Failed to load live list';
         });
+    } else {
+        // Fallback to localStorage if no cloud ID is specified
+        const localData = localStorage.getItem('web_options_local_state');
+        if (localData) {
+            try {
+                const parsed = JSON.parse(localData);
+                if (parsed && parsed.order) {
+                    applyOrder(parsed.order);
+                }
+            } catch(e) {}
+        }
     }
 });
 </script>
