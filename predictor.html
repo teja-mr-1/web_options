@@ -1067,46 +1067,68 @@ function populateCategoryDropdown(casteFilter = null) {
         'ews': 11
     };
 
-    const SUFFIX_ORDER = {
-        '_gen_au': 1,
-        '_girls_au': 2,
-        '_gen_svu': 3,
-        '_girls_svu': 4,
-        '_gen_ur': 5,
-        '_girls_ur': 6
-    };
+    function sortCats(catList) {
+        return catList.sort((a, b) => {
+            const sufA = PRIMARY_SUFFIXES.find(s => a.endsWith(s)) || '';
+            const sufB = PRIMARY_SUFFIXES.find(s => b.endsWith(s)) || '';
+            const prefA = a.replace(sufA, '');
+            const prefB = b.replace(sufB, '');
 
-    primaryCats.sort((a, b) => {
-        const sufA = PRIMARY_SUFFIXES.find(s => a.endsWith(s)) || '';
-        const sufB = PRIMARY_SUFFIXES.find(s => b.endsWith(s)) || '';
-        const prefA = a.replace(sufA, '');
-        const prefB = b.replace(sufB, '');
+            const rankA = CASTE_ORDER[prefA] || 99;
+            const rankB = CASTE_ORDER[prefB] || 99;
+            if (rankA !== rankB) return rankA - rankB;
 
-        const rankA = CASTE_ORDER[prefA] || 99;
-        const rankB = CASTE_ORDER[prefB] || 99;
+            // gen first, then girls
+            const genA = a.includes('_gen_') ? 1 : 2;
+            const genB = b.includes('_gen_') ? 1 : 2;
+            return genA - genB;
+        });
+    }
 
-        if (rankA !== rankB) {
-            return rankA - rankB;
-        }
-        return (SUFFIX_ORDER[sufA] || 99) - (SUFFIX_ORDER[sufB] || 99);
-    });
+    const auCats = sortCats(primaryCats.filter(c => c.endsWith('_au')));
+    const svuCats = sortCats(primaryCats.filter(c => c.endsWith('_svu')));
+    const urCats = sortCats(primaryCats.filter(c => c.endsWith('_ur')));
 
-    if (primaryCats.length > 0) {
-        const optGroupPrimary = document.createElement('optgroup');
-        optGroupPrimary.label = '🌟 Major Categories (General / Girls)';
-        primaryCats.forEach(cat => {
+    if (auCats.length > 0) {
+        const optGroupAU = document.createElement('optgroup');
+        optGroupAU.label = '📍 AU Region Categories (General & Girls)';
+        auCats.forEach(cat => {
             const opt = document.createElement('option');
             opt.value = cat;
             opt.textContent = cat;
-            optGroupPrimary.appendChild(opt);
+            optGroupAU.appendChild(opt);
         });
-        catSelect.appendChild(optGroupPrimary);
+        catSelect.appendChild(optGroupAU);
+    }
+
+    if (svuCats.length > 0) {
+        const optGroupSVU = document.createElement('optgroup');
+        optGroupSVU.label = '📍 SVU Region Categories (General & Girls)';
+        svuCats.forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat;
+            opt.textContent = cat;
+            optGroupSVU.appendChild(opt);
+        });
+        catSelect.appendChild(optGroupSVU);
+    }
+
+    if (urCats.length > 0) {
+        const optGroupUR = document.createElement('optgroup');
+        optGroupUR.label = '📍 Statewide / Unreserved Categories (UR)';
+        urCats.forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat;
+            opt.textContent = cat;
+            optGroupUR.appendChild(opt);
+        });
+        catSelect.appendChild(optGroupUR);
     }
 
     if (otherCats.length > 0) {
         const optGroupOther = document.createElement('optgroup');
         optGroupOther.label = '🏷️ Special Quotas & Other Categories';
-        otherCats.forEach(cat => {
+        otherCats.sort().forEach(cat => {
             const opt = document.createElement('option');
             opt.value = cat;
             opt.textContent = cat;
