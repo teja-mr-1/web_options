@@ -1023,8 +1023,9 @@ const PRIMARY_SUFFIXES = ['_gen_au', '_girls_au', '_gen_svu', '_girls_svu', '_ge
 
 function isPrimaryCategory(cat) {
     return PRIMARY_SUFFIXES.some(s => cat.endsWith(s)) && 
-           !cat.includes('_cap_') && !cat.includes('_ncc_') && !cat.includes('_sp_') && 
-           !cat.includes('_ph') && !cat.includes('_ang_') && !cat.includes('_sg_') && !cat.includes('_pm_');
+           !cat.includes('_pwd') && !cat.includes('_cap_') && !cat.includes('_ncc_') && 
+           !cat.includes('_sp_') && !cat.includes('_ph') && !cat.includes('_ang_') && 
+           !cat.includes('_sg_') && !cat.includes('_pm_');
 }
 
 function populateCategoryDropdown(casteFilter = null) {
