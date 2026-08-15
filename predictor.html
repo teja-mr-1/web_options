@@ -1052,19 +1052,43 @@ function populateCategoryDropdown(casteFilter = null) {
         }
     });
 
-    // Sort primary categories: OC first, then BC/SC/ST, AU first then SVU then UR
-    const suffixOrder = { '_gen_au': 1, '_girls_au': 2, '_gen_svu': 3, '_girls_svu': 4, '_gen_ur': 5, '_girls_ur': 6 };
+    // Strict sequence: OC -> BC_A -> BC_B -> BC_C -> BC_D -> BC_E -> SC_I -> SC_II -> SC_III -> ST -> EWS
+    const CASTE_ORDER = {
+        'oc': 1,
+        'bc_a': 2,
+        'bc_b': 3,
+        'bc_c': 4,
+        'bc_d': 5,
+        'bc_e': 6,
+        'sc_i': 7,
+        'sc_ii': 8,
+        'sc_iii': 9,
+        'st': 10,
+        'ews': 11
+    };
+
+    const SUFFIX_ORDER = {
+        '_gen_au': 1,
+        '_girls_au': 2,
+        '_gen_svu': 3,
+        '_girls_svu': 4,
+        '_gen_ur': 5,
+        '_girls_ur': 6
+    };
+
     primaryCats.sort((a, b) => {
         const sufA = PRIMARY_SUFFIXES.find(s => a.endsWith(s)) || '';
         const sufB = PRIMARY_SUFFIXES.find(s => b.endsWith(s)) || '';
         const prefA = a.replace(sufA, '');
         const prefB = b.replace(sufB, '');
-        if (prefA === prefB) {
-            return (suffixOrder[sufA] || 99) - (suffixOrder[sufB] || 99);
+
+        const rankA = CASTE_ORDER[prefA] || 99;
+        const rankB = CASTE_ORDER[prefB] || 99;
+
+        if (rankA !== rankB) {
+            return rankA - rankB;
         }
-        if (prefA === 'oc') return -1;
-        if (prefB === 'oc') return 1;
-        return prefA.localeCompare(prefB);
+        return (SUFFIX_ORDER[sufA] || 99) - (SUFFIX_ORDER[sufB] || 99);
     });
 
     if (primaryCats.length > 0) {
