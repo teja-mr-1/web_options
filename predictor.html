@@ -699,12 +699,11 @@
                         <th style="width: 70px; text-align: right;">Seats</th>
                         <th style="width: 120px; text-align: right;">Opening Rank</th>
                         <th style="width: 120px; text-align: right;">Closing Rank</th>
-                        <th style="width: 130px; text-align: center;" id="chance-header">Chance Status</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
                     <tr>
-                        <td colspan="10" class="loading-overlay">⚡ Loading AP EAPCET cutoffs database...</td>
+                        <td colspan="9" class="loading-overlay">⚡ Loading AP EAPCET cutoffs database...</td>
                     </tr>
                 </tbody>
             </table>
@@ -954,7 +953,7 @@ function renderTable() {
     if (filteredResults.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="10" class="empty-state">
+                <td colspan="9" class="empty-state">
                     <div class="empty-icon">🔎</div>
                     <div class="empty-title">No Matching Cutoffs Found</div>
                     <div class="empty-text">Try broadening your filters, choosing "All Categories", or clearing the search text.</div>
@@ -981,18 +980,6 @@ function renderTable() {
         const branchName = dbData.branches[bCode] || bCode;
         const feeStr = col.fee > 0 ? `₹${col.fee.toLocaleString()}` : (col.type === 'University' ? 'Govt Fee' : '—');
 
-        // Chance status badge
-        let chanceHtml = `<span style="color: #94a3b8; font-size: 0.8rem;">Enter Rank</span>`;
-        if (rankVal && rankVal > 0) {
-            if (rankVal <= closeR * 0.9) {
-                chanceHtml = `<span class="chance-badge chance-safe">🟢 Safe (${(closeR - rankVal).toLocaleString()} cushion)</span>`;
-            } else if (rankVal <= closeR * 1.1) {
-                chanceHtml = `<span class="chance-badge chance-probable">🟡 Probable Chance</span>`;
-            } else {
-                chanceHtml = `<span class="chance-badge chance-tough">🔴 Tough / Dream</span>`;
-            }
-        }
-
         html += `
             <tr>
                 <td style="text-align: center; color: var(--text-muted); font-weight: 600;">${startIdx + index + 1}</td>
@@ -1015,7 +1002,6 @@ function renderTable() {
                 <td style="text-align: right; font-weight: 600;">${count}</td>
                 <td style="text-align: right;"><span class="rank-pill open-rank">${openR.toLocaleString()}</span></td>
                 <td style="text-align: right;"><span class="rank-pill close-rank">${closeR.toLocaleString()}</span></td>
-                <td style="text-align: center;">${chanceHtml}</td>
             </tr>
         `;
     });
