@@ -681,7 +681,7 @@
                     <tr>
                         <th style="width: 50px; text-align: center;">S.No</th>
                         <th style="width: 100px;">Code</th>
-                        <th>College Name &amp; Details</th>
+                        <th>College Name</th>
                         <th style="width: 120px;">Branch</th>
                         <th style="width: 150px;">Category</th>
                         <th style="width: 60px; text-align: center;">Gen</th>
@@ -965,10 +965,7 @@ function renderTable() {
                 <td style="text-align: center; color: var(--text-muted); font-weight: 600;">${startIdx + index + 1}</td>
                 <td><span class="code-badge">${cCode}</span></td>
                 <td>
-                    <div class="college-title">${col.name}</div>
-                    <div class="college-meta">
-                        ${col.city ? col.city + ' &bull; ' : ''}${col.district ? col.district + ' Dist &bull; ' : ''}${col.univ ? 'Univ: ' + col.univ + ' &bull; ' : ''}Fee: ${feeStr}
-                    </div>
+                    <div class="college-title" style="margin-bottom: 0;">${col.name}</div>
                 </td>
                 <td>
                     <span class="branch-badge">${bCode}</span>
