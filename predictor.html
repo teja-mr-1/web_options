@@ -206,6 +206,93 @@
             cursor: pointer;
         }
 
+        /* ── Searchable Select Combobox ── */
+        .search-select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-select-input {
+            padding-right: 36px;
+            cursor: text;
+        }
+
+        .search-select-arrow {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .search-select-arrow:hover {
+            color: var(--primary);
+            background: #f1f5f9;
+        }
+
+        .search-select-menu {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            max-height: 280px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 6px;
+        }
+
+        .search-select-item {
+            padding: 9px 12px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.12s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-select-item:hover, .search-select-item.highlighted {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .search-select-item.selected {
+            background-color: #dbeafe;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .search-select-badge {
+            font-family: monospace;
+            font-weight: 700;
+            background: #e2e8f0;
+            color: #1e293b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            margin-right: 8px;
+        }
+
+        .search-select-empty {
+            padding: 12px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
         .rank-input-wrapper {
             position: relative;
         }
@@ -598,12 +685,15 @@
         </div>
 
         <div class="filter-grid">
-            <!-- 1. Branch Selector -->
+            <!-- 1. Searchable Branch Selector -->
             <div class="form-group">
-                <label for="branch-select">Engineering Branch</label>
-                <select id="branch-select" class="form-control" onchange="onFilterChange()">
-                    <option value="ALL">All Branches (70+ Specializations)</option>
-                </select>
+                <label for="branch-search-input">Engineering Branch</label>
+                <div class="search-select-wrapper" id="branch-combobox">
+                    <input type="text" id="branch-search-input" class="form-control search-select-input" placeholder="Search &amp; select branch..." autocomplete="off" onfocus="openBranchDropdown()" oninput="filterBranchOptions()">
+                    <input type="hidden" id="branch-select" value="ALL" data-chip="ALL">
+                    <button type="button" class="search-select-arrow" onclick="toggleBranchDropdown(event)">&#9662;</button>
+                    <div id="branch-dropdown-menu" class="search-select-menu" style="display: none;"></div>
+                </div>
             </div>
 
             <!-- 2. Caste / Community Selector -->
@@ -744,21 +834,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
+let allBranchOptions = [];
+
 // ── Populate Select Dropdowns ──
 function initializeDropdowns() {
-    // 1. Branches Dropdown
-    const branchSelect = document.getElementById('branch-select');
-    // Sort branches: popular CSE/ECE first, then rest alphabetical
-    const sortedBranchCodes = Object.keys(dbData.branches).sort((a, b) => {
-        return (dbData.branches[a] || a).localeCompare(dbData.branches[b] || b);
-    });
-
-    sortedBranchCodes.forEach(code => {
-        const opt = document.createElement('option');
-        opt.value = code;
-        opt.textContent = `${code} — ${dbData.branches[code] || code}`;
-        branchSelect.appendChild(opt);
-    });
+    // 1. Searchable Branches Combobox
+    initializeBranchSearchSelect();
 
     // 2. Castes Dropdown
     const casteSelect = document.getElementById('caste-select');
@@ -771,6 +852,119 @@ function initializeDropdowns() {
 
     // 3. Categories Dropdown
     populateCategoryDropdown();
+}
+
+function initializeBranchSearchSelect() {
+    allBranchOptions = [
+        { code: 'ALL', name: 'All Branches (70+ Specializations)' }
+    ];
+
+    const sortedBranchCodes = Object.keys(dbData.branches).sort((a, b) => {
+        return (dbData.branches[a] || a).localeCompare(dbData.branches[b] || b);
+    });
+
+    sortedBranchCodes.forEach(code => {
+        allBranchOptions.push({
+            code: code,
+            name: dbData.branches[code] || code
+        });
+    });
+
+    renderBranchMenu(allBranchOptions);
+    document.getElementById('branch-search-input').value = 'All Branches (70+ Specializations)';
+    document.getElementById('branch-select').value = 'ALL';
+
+    // Click outside to close
+    document.addEventListener('click', (e) => {
+        const combobox = document.getElementById('branch-combobox');
+        if (combobox && !combobox.contains(e.target)) {
+            closeBranchDropdown();
+        }
+    });
+}
+
+function renderBranchMenu(options) {
+    const menu = document.getElementById('branch-dropdown-menu');
+    const currentVal = document.getElementById('branch-select').value;
+
+    if (options.length === 0) {
+        menu.innerHTML = '<div class="search-select-empty">No matching branches found</div>';
+        return;
+    }
+
+    let html = '';
+    options.forEach(opt => {
+        const isSelected = opt.code === currentVal ? 'selected' : '';
+        const badgeHtml = opt.code !== 'ALL' ? `<span class="search-select-badge">${opt.code}</span>` : '';
+        html += `
+            <div class="search-select-item ${isSelected}" onclick="selectBranch('${opt.code}', '${opt.name.replace(/'/g, "\\'")}')">
+                <div>${badgeHtml}<span>${opt.name}</span></div>
+                ${isSelected ? '<span>✓</span>' : ''}
+            </div>
+        `;
+    });
+    menu.innerHTML = html;
+}
+
+function openBranchDropdown() {
+    const menu = document.getElementById('branch-dropdown-menu');
+    menu.style.display = 'block';
+    filterBranchOptions();
+}
+
+function closeBranchDropdown() {
+    const menu = document.getElementById('branch-dropdown-menu');
+    menu.style.display = 'none';
+
+    // If input text doesn't match current selected branch, restore label
+    const currentVal = document.getElementById('branch-select').value;
+    const found = allBranchOptions.find(b => b.code === currentVal);
+    if (found) {
+        document.getElementById('branch-search-input').value = found.code === 'ALL' ? found.name : `${found.code} — ${found.name}`;
+    }
+}
+
+function toggleBranchDropdown(e) {
+    e.stopPropagation();
+    const menu = document.getElementById('branch-dropdown-menu');
+    if (menu.style.display === 'block') {
+        closeBranchDropdown();
+    } else {
+        openBranchDropdown();
+        document.getElementById('branch-search-input').focus();
+    }
+}
+
+function filterBranchOptions() {
+    const query = document.getElementById('branch-search-input').value.trim().toLowerCase();
+    const menu = document.getElementById('branch-dropdown-menu');
+    menu.style.display = 'block';
+
+    if (!query) {
+        renderBranchMenu(allBranchOptions);
+        return;
+    }
+
+    const filtered = allBranchOptions.filter(b => {
+        return b.code.toLowerCase().includes(query) || b.name.toLowerCase().includes(query);
+    });
+    renderBranchMenu(filtered);
+}
+
+function selectBranch(code, name) {
+    document.getElementById('branch-select').value = code;
+    document.getElementById('branch-select').dataset.chip = code === 'ALL' ? 'ALL' : '';
+    document.getElementById('branch-search-input').value = code === 'ALL' ? name : `${code} — ${name}`;
+    closeBranchDropdown();
+
+    // Update quick chips active state
+    document.querySelectorAll('.quick-chips .chip').forEach(el => el.classList.remove('active'));
+    const matchedChip = Array.from(document.querySelectorAll('.quick-chips .chip')).find(el => {
+        return el.textContent.trim() === code || (code === 'ALL' && el.textContent.trim() === 'All Branches');
+    });
+    if (matchedChip) matchedChip.classList.add('active');
+
+    onFilterChange();
 }
 
 function populateCategoryDropdown(casteFilter = null) {
@@ -809,10 +1003,18 @@ function setBranchChip(chip) {
     event.target.classList.add('active');
 
     const branchSelect = document.getElementById('branch-select');
-    if (chip === 'ALL' || chip === 'CSE_ALLIED') {
+    const branchSearchInput = document.getElementById('branch-search-input');
+
+    if (chip === 'ALL') {
         branchSelect.value = 'ALL';
+        branchSearchInput.value = 'All Branches (70+ Specializations)';
+    } else if (chip === 'CSE_ALLIED') {
+        branchSelect.value = 'ALL';
+        branchSearchInput.value = 'All CSE & Allied Branches';
     } else {
         branchSelect.value = chip;
+        const bName = dbData.branches[chip] || chip;
+        branchSearchInput.value = `${chip} — ${bName}`;
     }
     branchSelect.dataset.chip = chip;
     onFilterChange();
@@ -1027,6 +1229,8 @@ function goToPage(p) {
 function resetFilters() {
     document.getElementById('branch-select').value = 'ALL';
     document.getElementById('branch-select').dataset.chip = 'ALL';
+    document.getElementById('branch-search-input').value = 'All Branches (70+ Specializations)';
+    closeBranchDropdown();
     document.querySelectorAll('.quick-chips .chip').forEach(el => el.classList.remove('active'));
     document.querySelector('.quick-chips .chip').classList.add('active');
 
