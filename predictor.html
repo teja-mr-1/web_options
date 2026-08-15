@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP EAPCET College Predictor & Cutoff Explorer 2026</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --secondary: #0f172a;
+            --accent: #10b981;
+            --accent-dark: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* ── Header & Navigation ── */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            border-radius: 16px;
+            padding: 28px 32px;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: #dbeafe;
+            max-width: 650px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.active {
+            background: white;
+            color: var(--primary-dark);
+            border-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ── Filter Card ── */
+        .filter-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .filter-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .chip:hover, .chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .form-control {
+            height: 42px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text);
+            background-color: white;
+            transition: all 0.2s ease;
+            outline: none;
+            width: 100%;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        .rank-input-wrapper {
+            position: relative;
+        }
+
+        .rank-input-wrapper span {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .filter-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .filter-toggles {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: var(--danger);
+            border: 1px solid #fecaca;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-reset:hover {
+            background: #fef2f2;
+            border-color: var(--danger);
+        }
+
+        /* ── Live Stats & Toolbar ── */
+        .stats-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .stats-count {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .stats-count span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sort-select {
+            height: 36px;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: white;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .btn-export {
+            height: 36px;
+            padding: 0 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-export:hover {
+            background: var(--bg);
+            border-color: #cbd5e1;
+        }
+
+        /* ── Results Table ── */
+        .table-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 12px 16px;
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .code-badge {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-weight: 700;
+            color: #1e293b;
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            display: inline-block;
+        }
+
+        .college-title {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 0.92rem;
+            margin-bottom: 3px;
+        }
+
+        .college-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .branch-badge {
+            font-weight: 700;
+            color: #047857;
+            background: #d1fae5;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .category-badge {
+            font-weight: 600;
+            color: #4338ca;
+            background: #e0e7ff;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            display: inline-block;
+        }
+
+        .rank-pill {
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .open-rank {
+            color: #0369a1;
+            background: #e0f2fe;
+        }
+
+        .close-rank {
+            color: #991b1b;
+            background: #fee2e2;
+        }
+
+        /* ── Prediction Chances Badges ── */
+        .chance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .chance-safe {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+
+        .chance-probable {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+
+        .chance-tough {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        /* ── Pagination ── */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: white;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .page-info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .page-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .page-btn {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text);
+            min-width: 34px;
+            height: 34px;
+            padding: 0 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--bg);
+            border-color: #cbd5e1;
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* ── Empty & Loading States ── */
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .empty-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+
+        .empty-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 420px;
+            margin: 0 auto 16px auto;
+        }
+
+        .loading-overlay {
+            padding: 60px 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            .header {
+                padding: 20px;
+            }
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- ── Top Header & Tab Navigation ── -->
+    <header class="header">
+        <div>
+            <h1>🎯 AP EAPCET College Predictor &amp; Cutoff Explorer</h1>
+            <p>Instant official cutoff ranks analysis across all engineering branches, caste categories, genders, and colleges in Andhra Pradesh.</p>
+        </div>
+        <nav class="nav-links">
+            <a href="web_options.html" class="nav-btn">
+                📋 Preference Options List
+            </a>
+            <a href="predictor.html" class="nav-btn active">
+                🎯 Cutoff Explorer &amp; Predictor
+            </a>
+        </nav>
+    </header>
+
+    <!-- ── Filter Card ── -->
+    <section class="filter-card">
+        <div class="filter-header">
+            <div class="filter-title">
+                🔍 Filter Allotment Cutoffs
+            </div>
+            <div class="quick-chips">
+                <span class="chip active" onclick="setBranchChip('ALL')">All Branches</span>
+                <span class="chip" onclick="setBranchChip('CSE')">CSE</span>
+                <span class="chip" onclick="setBranchChip('CSM')">CSE (AI &amp; ML)</span>
+                <span class="chip" onclick="setBranchChip('CSD')">CSE (Data Science)</span>
+                <span class="chip" onclick="setBranchChip('INF')">IT (INF)</span>
+                <span class="chip" onclick="setBranchChip('ECE')">ECE</span>
+                <span class="chip" onclick="setBranchChip('CSE_ALLIED')">All CSE &amp; Allied</span>
+            </div>
+        </div>
+
+        <div class="filter-grid">
+            <!-- 1. Branch Selector -->
+            <div class="form-group">
+                <label for="branch-select">Engineering Branch</label>
+                <select id="branch-select" class="form-control" onchange="onFilterChange()">
+                    <option value="ALL">All Branches (70+ Specializations)</option>
+                </select>
+            </div>
+
+            <!-- 2. Caste / Community Selector -->
+            <div class="form-group">
+                <label for="caste-select">Candidate Caste / Community</label>
+                <select id="caste-select" class="form-control" onchange="onCasteChange()">
+                    <option value="ALL">All Communities</option>
+                </select>
+            </div>
+
+            <!-- 3. Allotment Category Selector -->
+            <div class="form-group">
+                <label for="category-select">Seat Allotment Category</label>
+                <select id="category-select" class="form-control" onchange="onFilterChange()">
+                    <option value="ALL">All Seat Categories (240+)</option>
+                </select>
+            </div>
+
+            <!-- 4. Gender Selector -->
+            <div class="form-group">
+                <label for="gender-select">Candidate Gender</label>
+                <select id="gender-select" class="form-control" onchange="onFilterChange()">
+                    <option value="ALL">All Genders</option>
+                    <option value="M">Male (M)</option>
+                    <option value="F">Female (F)</option>
+                </select>
+            </div>
+
+            <!-- 5. Rank Input (Optional) -->
+            <div class="form-group">
+                <label for="rank-input">Your EAPCET Rank (Optional)</label>
+                <div class="rank-input-wrapper">
+                    <input type="number" id="rank-input" class="form-control" placeholder="e.g. 5000" oninput="onFilterChange()" min="1" max="250000">
+                    <span>RANK</span>
+                </div>
+            </div>
+
+            <!-- 6. Search Bar -->
+            <div class="form-group">
+                <label for="search-input">Search College / City / District</label>
+                <input type="text" id="search-input" class="form-control" placeholder="Search by name, code, or city..." oninput="onFilterChange()">
+            </div>
+        </div>
+
+        <div class="filter-actions">
+            <div class="filter-toggles">
+                <label class="checkbox-label" id="eligible-only-container" style="display: none;">
+                    <input type="checkbox" id="eligible-only-checkbox" onchange="onFilterChange()">
+                    <span>Show only colleges within my rank (Rank ≤ Closing Rank)</span>
+                </label>
+            </div>
+            <button class="btn-reset" onclick="resetFilters()">↺ Reset All Filters</button>
+        </div>
+    </section>
+
+    <!-- ── Stats Toolbar ── -->
+    <div class="stats-toolbar">
+        <div class="stats-count" id="stats-count-el">
+            Loading cutoff database...
+        </div>
+        <div class="toolbar-right">
+            <select class="sort-select" id="sort-select" onchange="onSortChange()">
+                <option value="open_asc">Opening Rank (Lowest / Best First)</option>
+                <option value="close_asc">Closing Rank (Lowest / Best First)</option>
+                <option value="close_desc">Closing Rank (Highest First)</option>
+                <option value="college_asc">College Name (A to Z)</option>
+                <option value="count_desc">Total Allotted Students</option>
+            </select>
+            <button class="btn-export" onclick="exportToCSV()">⬇ Export CSV</button>
+        </div>
+    </div>
+
+    <!-- ── Results Table ── -->
+    <div class="table-card">
+        <div class="table-responsive">
+            <table id="cutoffs-table">
+                <thead>
+                    <tr>
+                        <th style="width: 50px; text-align: center;">S.No</th>
+                        <th style="width: 100px;">Code</th>
+                        <th>College Name &amp; Details</th>
+                        <th style="width: 120px;">Branch</th>
+                        <th style="width: 150px;">Category</th>
+                        <th style="width: 60px; text-align: center;">Gen</th>
+                        <th style="width: 70px; text-align: right;">Seats</th>
+                        <th style="width: 120px; text-align: right;">Opening Rank</th>
+                        <th style="width: 120px; text-align: right;">Closing Rank</th>
+                        <th style="width: 130px; text-align: center;" id="chance-header">Chance Status</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr>
+                        <td colspan="10" class="loading-overlay">⚡ Loading AP EAPCET cutoffs database...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ── Pagination Bar ── -->
+        <div class="pagination" id="pagination-bar" style="display: none;">
+            <div class="page-info" id="page-info">Showing 1 to 50 of 0 entries</div>
+            <div class="page-buttons" id="page-buttons"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ── Global State ──
+let dbData = null;
+let filteredResults = [];
+let currentPage = 1;
+const pageSize = 50;
+
+const CSE_ALLIED_CODES = new Set([
+    'CSE', 'CSM', 'CSD', 'INF', 'AIM', 'AID', 'AI', 'CAI', 'CAD', 
+    'CSC', 'CSB', 'CIC', 'CSO', 'CSS', 'CST', 'CSW', 'DS', 'SWE', 'CIT'
+]);
+
+// ── Fetch and Load Database ──
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('cutoffs_data.json')
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load cutoffs_data.json');
+            return response.json();
+        })
+        .then(data => {
+            dbData = data;
+            initializeDropdowns();
+            applyFilters();
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('table-body').innerHTML = `
+                <tr>
+                    <td colspan="10" class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+                        <div class="empty-title">Error Loading Database</div>
+                        <div class="empty-text">Could not load cutoffs_data.json. Please make sure the data file is present.</div>
+                    </td>
+                </tr>
+            `;
+        });
+});
+
+// ── Populate Select Dropdowns ──
+function initializeDropdowns() {
+    // 1. Branches Dropdown
+    const branchSelect = document.getElementById('branch-select');
+    // Sort branches: popular CSE/ECE first, then rest alphabetical
+    const sortedBranchCodes = Object.keys(dbData.branches).sort((a, b) => {
+        return (dbData.branches[a] || a).localeCompare(dbData.branches[b] || b);
+    });
+
+    sortedBranchCodes.forEach(code => {
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = `${code} — ${dbData.branches[code] || code}`;
+        branchSelect.appendChild(opt);
+    });
+
+    // 2. Castes Dropdown
+    const casteSelect = document.getElementById('caste-select');
+    dbData.castes.forEach(caste => {
+        const opt = document.createElement('option');
+        opt.value = caste;
+        opt.textContent = caste;
+        casteSelect.appendChild(opt);
+    });
+
+    // 3. Categories Dropdown
+    populateCategoryDropdown();
+}
+
+function populateCategoryDropdown(casteFilter = null) {
+    const catSelect = document.getElementById('category-select');
+    const currentVal = catSelect.value;
+    catSelect.innerHTML = '<option value="ALL">All Seat Categories (240+)</option>';
+
+    let categories = dbData.categories;
+    if (casteFilter && casteFilter !== 'ALL') {
+        const prefix = casteFilter.toLowerCase() + '_';
+        const ocPrefix = 'oc_';
+        // Show categories matching caste prefix or open category
+        categories = dbData.categories.filter(c => c.startsWith(prefix) || c.startsWith(ocPrefix));
+    }
+
+    categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        catSelect.appendChild(opt);
+    });
+
+    if (categories.includes(currentVal)) {
+        catSelect.value = currentVal;
+    }
+}
+
+function onCasteChange() {
+    const caste = document.getElementById('caste-select').value;
+    populateCategoryDropdown(caste);
+    onFilterChange();
+}
+
+function setBranchChip(chip) {
+    document.querySelectorAll('.quick-chips .chip').forEach(el => el.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const branchSelect = document.getElementById('branch-select');
+    if (chip === 'ALL' || chip === 'CSE_ALLIED') {
+        branchSelect.value = 'ALL';
+    } else {
+        branchSelect.value = chip;
+    }
+    branchSelect.dataset.chip = chip;
+    onFilterChange();
+}
+
+function onFilterChange() {
+    currentPage = 1;
+    applyFilters();
+}
+
+function onSortChange() {
+    currentPage = 1;
+    sortResults();
+    renderTable();
+}
+
+// ── Core Multi-Attribute Filter Engine ──
+function applyFilters() {
+    if (!dbData) return;
+
+    const branchVal = document.getElementById('branch-select').value;
+    const branchChip = document.getElementById('branch-select').dataset.chip || 'ALL';
+    const casteVal = document.getElementById('caste-select').value;
+    const categoryVal = document.getElementById('category-select').value;
+    const genderVal = document.getElementById('gender-select').value;
+    const rankVal = parseInt(document.getElementById('rank-input').value) || null;
+    const eligibleOnly = document.getElementById('eligible-only-checkbox').checked;
+    const searchVal = document.getElementById('search-input').value.trim().toLowerCase();
+
+    // Show/hide rank-specific options
+    const eligibleContainer = document.getElementById('eligible-only-container');
+    if (rankVal && rankVal > 0) {
+        eligibleContainer.style.display = 'flex';
+    } else {
+        eligibleContainer.style.display = 'none';
+        document.getElementById('eligible-only-checkbox').checked = false;
+    }
+
+    // Filter cutoffs array
+    // [c_code, b_code, cat, com, gen, count, open_r, close_r]
+    filteredResults = dbData.cutoffs.filter(item => {
+        const [cCode, bCode, cat, com, gen, count, openR, closeR] = item;
+
+        // 1. Branch Filter
+        if (branchChip === 'CSE_ALLIED') {
+            if (!CSE_ALLIED_CODES.has(bCode)) return false;
+        } else if (branchVal !== 'ALL') {
+            if (bCode !== branchVal) return false;
+        }
+
+        // 2. Caste Filter
+        if (casteVal !== 'ALL') {
+            if (com !== casteVal) return false;
+        }
+
+        // 3. Category Filter
+        if (categoryVal !== 'ALL') {
+            if (cat !== categoryVal) return false;
+        }
+
+        // 4. Gender Filter
+        if (genderVal !== 'ALL') {
+            if (gen !== genderVal) return false;
+        }
+
+        // 5. Rank / Eligibility Filter
+        if (rankVal && eligibleOnly) {
+            if (rankVal > closeR) return false;
+        }
+
+        // 6. Text Search (College code, name, city, district)
+        if (searchVal) {
+            const col = dbData.colleges[cCode] || {};
+            const colName = (col.name || '').toLowerCase();
+            const colCity = (col.city || '').toLowerCase();
+            const colDist = (col.district || '').toLowerCase();
+            const branchName = (dbData.branches[bCode] || '').toLowerCase();
+
+            const matches = cCode.toLowerCase().includes(searchVal) ||
+                            bCode.toLowerCase().includes(searchVal) ||
+                            colName.includes(searchVal) ||
+                            colCity.includes(searchVal) ||
+                            colDist.includes(searchVal) ||
+                            branchName.includes(searchVal);
+            if (!matches) return false;
+        }
+
+        return true;
+    });
+
+    sortResults();
+    renderTable();
+}
+
+// ── Sorting Engine ──
+function sortResults() {
+    const sortVal = document.getElementById('sort-select').value;
+
+    filteredResults.sort((a, b) => {
+        // [cCode, bCode, cat, com, gen, count, openR, closeR]
+        if (sortVal === 'open_asc') {
+            return a[6] - b[6] || a[7] - b[7];
+        } else if (sortVal === 'close_asc') {
+            return a[7] - b[7] || a[6] - b[6];
+        } else if (sortVal === 'close_desc') {
+            return b[7] - a[7];
+        } else if (sortVal === 'college_asc') {
+            const nameA = (dbData.colleges[a[0]]?.name || a[0]);
+            const nameB = (dbData.colleges[b[0]]?.name || b[0]);
+            return nameA.localeCompare(nameB);
+        } else if (sortVal === 'count_desc') {
+            return b[5] - a[5];
+        }
+        return 0;
+    });
+}
+
+// ── Render Results Table ──
+function renderTable() {
+    const tbody = document.getElementById('table-body');
+    const statsEl = document.getElementById('stats-count-el');
+    const paginationBar = document.getElementById('pagination-bar');
+    const rankVal = parseInt(document.getElementById('rank-input').value) || null;
+
+    statsEl.innerHTML = `Showing <span>${filteredResults.length.toLocaleString()}</span> matching college cutoff options`;
+
+    if (filteredResults.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="10" class="empty-state">
+                    <div class="empty-icon">🔎</div>
+                    <div class="empty-title">No Matching Cutoffs Found</div>
+                    <div class="empty-text">Try broadening your filters, choosing "All Categories", or clearing the search text.</div>
+                    <button class="btn-reset" onclick="resetFilters()">↺ Reset Filters</button>
+                </td>
+            </tr>
+        `;
+        paginationBar.style.display = 'none';
+        return;
+    }
+
+    paginationBar.style.display = 'flex';
+    const totalPages = Math.ceil(filteredResults.length / pageSize);
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const startIdx = (currentPage - 1) * pageSize;
+    const endIdx = Math.min(startIdx + pageSize, filteredResults.length);
+    const pagedItems = filteredResults.slice(startIdx, endIdx);
+
+    let html = '';
+    pagedItems.forEach((item, index) => {
+        const [cCode, bCode, cat, com, gen, count, openR, closeR] = item;
+        const col = dbData.colleges[cCode] || { name: cCode, city: '—', district: '—', type: 'PVT', univ: '—', fee: 0 };
+        const branchName = dbData.branches[bCode] || bCode;
+        const feeStr = col.fee > 0 ? `₹${col.fee.toLocaleString()}` : (col.type === 'University' ? 'Govt Fee' : '—');
+
+        // Chance status badge
+        let chanceHtml = `<span style="color: #94a3b8; font-size: 0.8rem;">Enter Rank</span>`;
+        if (rankVal && rankVal > 0) {
+            if (rankVal <= closeR * 0.9) {
+                chanceHtml = `<span class="chance-badge chance-safe">🟢 Safe (${(closeR - rankVal).toLocaleString()} cushion)</span>`;
+            } else if (rankVal <= closeR * 1.1) {
+                chanceHtml = `<span class="chance-badge chance-probable">🟡 Probable Chance</span>`;
+            } else {
+                chanceHtml = `<span class="chance-badge chance-tough">🔴 Tough / Dream</span>`;
+            }
+        }
+
+        html += `
+            <tr>
+                <td style="text-align: center; color: var(--text-muted); font-weight: 600;">${startIdx + index + 1}</td>
+                <td><span class="code-badge">${cCode}</span></td>
+                <td>
+                    <div class="college-title">${col.name}</div>
+                    <div class="college-meta">
+                        ${col.city ? col.city + ' &bull; ' : ''}${col.district ? col.district + ' Dist &bull; ' : ''}${col.univ ? 'Univ: ' + col.univ + ' &bull; ' : ''}Fee: ${feeStr}
+                    </div>
+                </td>
+                <td>
+                    <span class="branch-badge">${bCode}</span>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">${branchName}</div>
+                </td>
+                <td>
+                    <span class="category-badge">${cat}</span>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Caste: <strong>${com}</strong></div>
+                </td>
+                <td style="text-align: center; font-weight: 700; color: ${gen === 'F' ? '#db2777' : '#2563eb'};">${gen}</td>
+                <td style="text-align: right; font-weight: 600;">${count}</td>
+                <td style="text-align: right;"><span class="rank-pill open-rank">${openR.toLocaleString()}</span></td>
+                <td style="text-align: right;"><span class="rank-pill close-rank">${closeR.toLocaleString()}</span></td>
+                <td style="text-align: center;">${chanceHtml}</td>
+            </tr>
+        `;
+    });
+
+    tbody.innerHTML = html;
+    renderPagination(startIdx, endIdx, totalPages);
+}
+
+// ── Render Pagination Controls ──
+function renderPagination(startIdx, endIdx, totalPages) {
+    const pageInfo = document.getElementById('page-info');
+    pageInfo.textContent = `Showing ${(startIdx + 1).toLocaleString()} to ${endIdx.toLocaleString()} of ${filteredResults.length.toLocaleString()} entries`;
+
+    const pageButtons = document.getElementById('page-buttons');
+    let btnsHtml = `
+        <button class="page-btn" onclick="goToPage(1)" ${currentPage === 1 ? 'disabled' : ''}>&laquo;</button>
+        <button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>&lsaquo;</button>
+    `;
+
+    const maxVisible = 5;
+    let startP = Math.max(1, currentPage - 2);
+    let endP = Math.min(totalPages, startP + maxVisible - 1);
+    if (endP - startP < maxVisible - 1) {
+        startP = Math.max(1, endP - maxVisible + 1);
+    }
+
+    for (let p = startP; p <= endP; p++) {
+        btnsHtml += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>`;
+    }
+
+    btnsHtml += `
+        <button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>&rsaquo;</button>
+        <button class="page-btn" onclick="goToPage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''}>&raquo;</button>
+    `;
+
+    pageButtons.innerHTML = btnsHtml;
+}
+
+function goToPage(p) {
+    currentPage = p;
+    renderTable();
+    window.scrollTo({ top: 400, behavior: 'smooth' });
+}
+
+// ── Reset Filters ──
+function resetFilters() {
+    document.getElementById('branch-select').value = 'ALL';
+    document.getElementById('branch-select').dataset.chip = 'ALL';
+    document.querySelectorAll('.quick-chips .chip').forEach(el => el.classList.remove('active'));
+    document.querySelector('.quick-chips .chip').classList.add('active');
+
+    document.getElementById('caste-select').value = 'ALL';
+    populateCategoryDropdown('ALL');
+    document.getElementById('category-select').value = 'ALL';
+    document.getElementById('gender-select').value = 'ALL';
+    document.getElementById('rank-input').value = '';
+    document.getElementById('search-input').value = '';
+    document.getElementById('eligible-only-checkbox').checked = false;
+    document.getElementById('sort-select').value = 'open_asc';
+
+    currentPage = 1;
+    applyFilters();
+}
+
+// ── Export Results to CSV ──
+function exportToCSV() {
+    if (!filteredResults || filteredResults.length === 0) {
+        alert('No data to export!');
+        return;
+    }
+
+    const headers = ['S.No', 'College Code', 'College Name', 'City', 'District', 'Branch Code', 'Branch Name', 'Category', 'Caste', 'Gender', 'Allotted Seats', 'Opening Rank', 'Closing Rank', 'Tuition Fee'];
+    const rows = filteredResults.map((item, idx) => {
+        const [cCode, bCode, cat, com, gen, count, openR, closeR] = item;
+        const col = dbData.colleges[cCode] || {};
+        return [
+            idx + 1,
+            `"${cCode}"`,
+            `"${(col.name || cCode).replace(/"/g, '""')}"`,
+            `"${col.city || ''}"`,
+            `"${col.district || ''}"`,
+            `"${bCode}"`,
+            `"${(dbData.branches[bCode] || bCode).replace(/"/g, '""')}"`,
+            `"${cat}"`,
+            `"${com}"`,
+            `"${gen}"`,
+            count,
+            openR,
+            closeR,
+            col.fee || 0
+        ];
+    });
+
+    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `ap_eapcet_cutoffs_filtered_${new Date().toISOString().slice(0,10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+
+</body>
+</html>
